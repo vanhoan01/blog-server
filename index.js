@@ -6,10 +6,11 @@ const app = express();
 /*
     mongodb://localhost:27017/AppDB
 */
-mongoose.connect('mongodb+srv://HoanBlog:251201@cluster0.pfgawms.mongodb.net/AppDB?retryWrites=true&w=majority', { 
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
+// mongoose.connect('mongodb+srv://HoanBlog:251201@cluster0.pfgawms.mongodb.net/AppDB?retryWrites=true&w=majority', { 
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true
+// });
+
 const connection = mongoose.connection;
 connection.once("open", ()=>{
     console.log("MongoDb connected");
