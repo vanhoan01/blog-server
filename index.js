@@ -1,5 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
+require('dotenv').config()
+console.log(process.env)
 const port = process.env.PORT || 5000;
 const app = express();
 
@@ -8,8 +10,8 @@ const app = express();
 */
 mongoose.connect('mongodb+srv://HoanBlog:251201@cluster0.pfgawms.mongodb.net/AppDB?retryWrites=true&w=majority', { 
     useNewUrlParser: true,
+    useCreateIndex: true,
     useUnifiedTopology: true,
-    keepAlive: true, keepAliveInitialDelay: 300000
 });
 
 const connection = mongoose.connection;
