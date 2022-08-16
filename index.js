@@ -31,7 +31,6 @@ data = {
   
 app.route("/").get((req, res) => res.json(data));
  
-app.listen(port, function(err){
-    if (err) console.log(err);
-    console.log("Server listening on port", port);
-});
+app.listen(port, "0.0.0.0", () =>
+  console.log(`welcome your listinnig at port ${port}`)
+);
