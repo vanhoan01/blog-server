@@ -6,10 +6,10 @@ const app = express();
 /*
     mongodb://localhost:27017/AppDB
 */
-// mongoose.connect('mongodb+srv://HoanBlog:251201@cluster0.pfgawms.mongodb.net/AppDB?retryWrites=true&w=majority', { 
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true
-// });
+mongoose.connect('mongodb+srv://HoanBlog:251201@cluster0.pfgawms.mongodb.net/AppDB?retryWrites=true&w=majority', { 
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
 
 const connection = mongoose.connection;
 connection.once("open", ()=>{
@@ -20,14 +20,18 @@ connection.once("open", ()=>{
 app.use(express.json());
 const userRoute = require("./routes/user");
 app.use("/user", userRoute);
-app.route("/").get((req, res) => res.json("your first rest api"));
-////them
-app.post('/', function (req, res) {
-    console.log(req.body.name)
-    res.end();
- })
+
+data = {
+    msg: "Welcome on DevStack Blog App development YouTube video series",
+    info: "This is a root endpoint",
+    Working: "Documentations of other endpoints will be release soon :)",
+    request:
+      "Hey if you did'nt subscribed my YouTube channle please subscribe it",
+  };
+  
+app.route("/").get((req, res) => res.json(data));
  
- app.listen(port, function(err){
+app.listen(port, function(err){
     if (err) console.log(err);
     console.log("Server listening on port", port);
- });
+});
