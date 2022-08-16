@@ -10,7 +10,6 @@ mongoose.connect(
     "mongodb+srv://HoanBlog:251201@cluster0.pfgawms.mongodb.net/AppDB?retryWrites=true&w=majority",
     { 
         useNewUrlParser: true,
-        useCreateIndex: true,
         useUnifiedTopology: true,
     }
 );
