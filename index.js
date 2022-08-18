@@ -11,8 +11,9 @@ mongoose.connect(
     { 
         useNewUrlParser: true,
         useUnifiedTopology: true,
+        serverSelectionTimeoutMS: 5000
     }
-);
+).catch(err => console.log(err.reason));
 
 const connection = mongoose.connection;
 connection.once("open", ()=>{
