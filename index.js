@@ -10,8 +10,7 @@ mongoose.connect(
     "mongodb+srv://HoanBlog:251201@cluster0.pfgawms.mongodb.net/AppDB?retryWrites=true&w=majority",
     { 
         useNewUrlParser: true,
-        useUnifiedTopology: true,
-        serverSelectionTimeoutMS: 5000
+        useUnifiedTopology: true
     }
 ).catch(err => console.log(err.reason));
 
