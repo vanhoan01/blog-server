@@ -3,7 +3,6 @@ const config = require("../config");
 const User = require("../models/users.model");
 const jwt = require("jsonwebtoken");
 const middleware = require("../middleware");
-
 const router = express.Router();
 
 router.route("/:username").get(middleware.checkToken, (req, res) => {

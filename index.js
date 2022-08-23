@@ -20,9 +20,12 @@ connection.once("open", ()=>{
 });
 
 //middleware
+app.use("/uploads", express.static("uploads"));
 app.use(express.json());
 const userRoute = require("./routes/user");
 app.use("/user", userRoute);
+const profileRoute = require("./routes/profile.js");
+app.use("/profile", profileRoute);
 
 data = {
     msg: "Welcome on DevStack Blog App development YouTube video series",
