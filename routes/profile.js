@@ -25,7 +25,7 @@ const upload = multer({
     limits: {
         fileSize: 1024*1024*6,
     },
-    fileFilter: fileFilter
+    // fileFilter: fileFilter
 });
 
 //add and update profile image
@@ -68,6 +68,63 @@ router.route("/add").post(middleware.checkToken, (req, res) => {
         .catch((err) => {
             return res.status(400).json({ err: err });
         });
+});
+
+router.route("/checkProfile").get(middleware.checkToken, (req, res) => {
+  Profile.findOne({username: req.decoded.username}, (err, result) => {
+    if(err) return res.json({err:err});
+    else if(result == null){
+      return res.json({status: false});
+    }
+    else{
+      return res.json({status: true});
+    }
+  });
+});
+
+router.route("/getData").get(middleware.checkToken, (req, res) => {
+  Profile.findOne({username: req.decoded.username}, (err, result) => {
+    if(err) return res.json({err:err});
+    if(result == null){
+      return res.json({data: []});
+    }
+    else{
+      return res.json({data: result});
+    }
+  });
+});
+
+router.route("/update").patch(middleware.checkToken,  (req, res) => {
+  let profile = {};
+   Profile.findOne({username: req.decoded.username}, (err, result) => {
+    if(err){
+      profile = {};
+    }
+    if(result != null){
+      profile = result;
+    }
+  });
+  Profile.findOneAndUpdate(
+      {username: req.decoded.username},
+      {$set: {
+        name: req.body.name ? req.body.name : profile.name,
+        profession: req.body.profession ? req.body.profession : profile.profession,
+        DOB: req.body.DOB ? req.body.DOB : profile.DOB,
+        titleline: req.body.titleline ? req.body.titleline : profile.titleline,
+        about: req.body.about ? req.body.about : profile.about,
+      },
+    },
+    {new: true},
+    (err, result) => {
+      if(err) return res.json({err:err});
+      if(result == null){
+        return res.json({data: []});
+      }
+      else{
+        return res.json({data: result});
+      }
+    }
+  );
 });
 
 module.exports = router;

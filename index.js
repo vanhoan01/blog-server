@@ -26,6 +26,8 @@ const userRoute = require("./routes/user");
 app.use("/user", userRoute);
 const profileRoute = require("./routes/profile.js");
 app.use("/profile", profileRoute);
+const blogRoute = require("./routes/blogpost.js");
+app.use("/blogpost", blogRoute);
 
 data = {
     msg: "Welcome on DevStack Blog App development YouTube video series",
@@ -37,6 +39,6 @@ data = {
   
 app.route("/").get((req, res) => res.json(data));
  
-app.listen(port, () =>
+app.listen(port, "0.0.0.0", () =>
   console.log(`welcome your listinnig at port ${port}`)
 );

@@ -43,7 +43,7 @@ router.route("/login").post((req, res) => {
             if(result.password == req.body.password)
             {
                 let token = jwt.sign({username: req.body.username}, config.key, {
-                    expiresIn: "24h"
+                    // expiresIn: "24h"
                 });
                 res.json({
                     token: token,
@@ -74,7 +74,7 @@ router.route("/register").post((req, res) => {
         });
 });
 
-router.route("/update/:username").patch(middleware.checkToken, (req, res) => {
+router.route("/update/:username").patch((req, res) => {
     User.findOneAndUpdate(
         {username: req.params.username},
         {$set: {password: req.body.password}},
